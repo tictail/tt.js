@@ -1,0 +1,19 @@
+{
+  "name": "tt",
+  "version": "0.0.0",
+  "homepage": "http://tictail.com/",
+  "author": "Tictail AB",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tictail/tt.js.git"
+  },
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-contrib-coffee": "0.7.0",
+    "grunt-contrib-concat": "0.3.0",
+    "grunt-contrib-uglify": "0.2.2",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-clean": "0.5.0",
+    "matchdep": "~0.1.1"
+  }
+}
