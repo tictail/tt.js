@@ -14,3 +14,8 @@ This project contains all pieces that togehter builds up tt.js. To build tt.js o
     
     # Build tt.js using grunt
     $ grunt build
+    
+    # Upload the built assets to s3
+    $ export AWS_ACCESS_KEY_ID="<key>"
+    $ export AWS_SECRET_ACCESS_KEY="<secret>"
+    $ grunt s3
