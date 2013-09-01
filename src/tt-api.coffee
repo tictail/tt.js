@@ -15,8 +15,16 @@ class API
 
     $.ajax $.extend(true, defaults, options)
 
-  get: (endpoint, options...) ->
-    defaults = {endpoint: endpoint}
-    @ajax $.extend(true, defaults, options)
+  get: (endpoint) ->
+    @ajax {endpoint: endpoint, type: 'GET'}
+
+  post: (endpoint, data) ->
+    @ajax {endpoint: endpoint, data: data, type: 'POST'}
+
+  put: (endpoint, data) ->
+    @ajax {endpoint: endpoint, data: data, type: 'PUT'}
+
+  delete: (endpoint) ->
+    @ajax {endpoint: endpoint, type: 'DELETE'}
 
 window.tt.api = new API
