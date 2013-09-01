@@ -19,7 +19,7 @@ module.exports = (grunt) ->
           dest: ""
         ]
 
-  grunt.registerTask 'build', (target) ->
+  grunt.registerTask 'build', ->
     grunt.task.run ['coffee:build']
 
   grunt.registerTask 'default', ['build']
