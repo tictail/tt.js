@@ -55,10 +55,19 @@ module.exports = (grunt) ->
             dest + parts.join(".")
         }]
 
+    concat:
+      options:
+        banner: "/*! v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n\n",
+
+      build:
+        src: ['<%= config.build %>/*.js']
+        dest: '<%= config.build %>/tt.js'
+
   grunt.registerTask 'build', ->
     grunt.task.run [
       'clean:build'
       'coffee:build'
+      'concat:build'
       'copy:build'
     ]
 
