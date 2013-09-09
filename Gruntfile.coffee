@@ -14,6 +14,7 @@ module.exports = (grunt) ->
         src: '{,*/}*.coffee',
         dest: 'build',
         ext: '.js'
+
     s3:
       options:
         bucket: 'com.tictail.cdn.apps.assets'
@@ -23,11 +24,23 @@ module.exports = (grunt) ->
           src: "<%= config.build %>/*"
           dest: ""
         ]
+
     bump:
       options:
         pushTo: "origin"
 
+    clean:
+      build:
+        files: [{
+          dot: true
+          src: [
+            '<%= config.build %>/*'
+          ]
+        }]
   grunt.registerTask 'build', ->
-    grunt.task.run ['coffee:build']
+    grunt.task.run [
+      'clean:build'
+      'coffee:build'
+    ]
 
   grunt.registerTask 'default', ['build']
