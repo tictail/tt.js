@@ -19,3 +19,6 @@ This project contains all pieces that togehter builds up tt.js. To build tt.js o
     $ export AWS_ACCESS_KEY_ID="<key>"
     $ export AWS_SECRET_ACCESS_KEY="<secret>"
     $ grunt s3
+    
+    # Release a new version on code changes, bump version, tag and push to GitHub
+    $ grunt bump
