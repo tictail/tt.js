@@ -71,4 +71,8 @@ module.exports = (grunt) ->
       'copy:build'
     ]
 
-  grunt.registerTask 'default', ['build']
+  grunt.registerTask 'release', ->
+    grunt.task.run [
+      'build'
+      's3'
+    ]
