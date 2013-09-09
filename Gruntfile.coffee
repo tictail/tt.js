@@ -60,7 +60,7 @@ module.exports = (grunt) ->
         banner: "/*! v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n\n",
 
       build:
-        src: ['<%= config.build %>/*.js']
+        src: '<%= config.build %>/*.js'
         dest: '<%= config.build %>/tt.js'
 
   grunt.registerTask 'build', ->
