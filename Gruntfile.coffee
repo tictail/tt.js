@@ -2,6 +2,9 @@ module.exports = (grunt) ->
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
   grunt.initConfig
+    config:
+      build: 'build'
+
     coffee:
       build:
         expand: true,
@@ -15,7 +18,7 @@ module.exports = (grunt) ->
         region: 'eu-west-1'
       build:
         upload: [
-          src: "build/*"
+          src: "<%= config.build %>/*"
           dest: ""
         ]
     bump:
