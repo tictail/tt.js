@@ -18,6 +18,9 @@ module.exports = (grunt) ->
           src: "build/*"
           dest: ""
         ]
+    bump:
+      options:
+        pushTo: "origin"
 
   grunt.registerTask 'build', ->
     grunt.task.run ['coffee:build']
