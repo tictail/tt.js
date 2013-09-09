@@ -1,7 +1,7 @@
 tt.js
 =====
 
-This project contains all pieces that togehter builds up tt.js. To build tt.js on your local machine follow these steps:
+This project contains all pieces that togehter builds up `tt.js`. Here are a few commands to get you started:
 
     # Install node on your local machine
     $ brew install node
@@ -12,13 +12,16 @@ This project contains all pieces that togehter builds up tt.js. To build tt.js o
     # Install all dependencies
     $ npm install
     
-    # Build tt.js using grunt
+    # Build the assets during development
     $ grunt build
     
-    # Upload the built assets to s3
+    # When you're ready to release a new version. Bump the version number,
+    # tag a new release and push the code to GitHub
+    $ grunt bump
+    
+    # Build and upload the assets to s3
     $ export AWS_ACCESS_KEY_ID="<key>"
     $ export AWS_SECRET_ACCESS_KEY="<secret>"
-    $ grunt s3
+    $ grunt release
     
-    # Release a new version on code changes, bump version, tag and push to GitHub
-    $ grunt bump
+Have a look in the `Gruntfile.coffee` to get more information on what each step actually does.
