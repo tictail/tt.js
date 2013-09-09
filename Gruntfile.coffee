@@ -12,7 +12,7 @@ module.exports = (grunt) ->
         expand: true,
         cwd: 'src',
         src: '{,*/}*.coffee',
-        dest: 'build',
+        dest: '<%= config.build %>',
         ext: '.js'
 
     s3:
@@ -46,7 +46,7 @@ module.exports = (grunt) ->
           src: [
             '**.*'
           ]
-          dest: 'build/'
+          dest: '<%= config.build %>/'
           rename: (dest, src) ->
             parts = src.split(".")
             extension = parts.pop()
