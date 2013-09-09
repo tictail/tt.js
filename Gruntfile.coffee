@@ -37,10 +37,29 @@ module.exports = (grunt) ->
             '<%= config.build %>/*'
           ]
         }]
+
+    copy:
+      build:
+        files: [{
+          expand: true,
+          cwd: '<%= config.build %>'
+          src: [
+            '**.*'
+          ]
+          dest: 'build/'
+          rename: (dest, src) ->
+            parts = src.split(".")
+            extension = parts.pop()
+            parts.push('<%= pkg.version %>')
+            parts.push(extension)
+            dest + parts.join(".")
+        }]
+
   grunt.registerTask 'build', ->
     grunt.task.run [
       'clean:build'
       'coffee:build'
+      'copy:build'
     ]
 
   grunt.registerTask 'default', ['build']
