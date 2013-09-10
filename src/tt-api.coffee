@@ -1,5 +1,5 @@
-unless window.tt
-  window.tt = {}
+unless window.TT
+  window.TT = {}
 
 class API
   url: "https://api.tictail.com"
@@ -27,4 +27,4 @@ class API
   delete: (endpoint) ->
     @ajax {endpoint: endpoint, type: 'DELETE'}
 
-window.tt.api = new API
+window.TT.api = new API
