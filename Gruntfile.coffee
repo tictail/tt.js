@@ -19,6 +19,7 @@ module.exports = (grunt) ->
       options:
         bucket: 'com.tictail.cdn.apps.assets'
         region: 'eu-west-1'
+        access: 'public-read'
       build:
         upload: [
           src: "<%= config.build %>/*"
