@@ -122,5 +122,5 @@ module.exports = (grunt) ->
     'build'
     'coffee:test'
     'connect:test'
-    'mocha:all'
+    'mocha'
   ]
