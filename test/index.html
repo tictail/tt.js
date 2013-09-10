@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mocha/mocha.css" />
+  </head>
+  <body>
+    <!-- Show the test output if in browser -->
+    <div id="mocha"></div>
+
+    <!-- Use mocha along with chai for should based testing -->
+    <script src="mocha/mocha.js"></script>
+    <script src="chai/chai.js"></script>
+    <script>
+      chai.should();
+      mocha.setup('bdd');
+    </script>
+
+    <!-- Include test subjects -->
+    <script src="tt-api.js"></script>
+
+    <!-- Include our tests -->
+    <script src="test_api.js"></script>
+
+    <!-- Run the test suite using mocha -->
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
