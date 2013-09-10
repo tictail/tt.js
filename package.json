@@ -11,6 +11,7 @@
     "matchdep": "~0.1.1",
     "mocha": "~1.12.1",
     "chai": "~1.7.2",
+    "jquery-browser": "~1.10.2",
     "grunt": "0.4.1",
     "grunt-contrib-coffee": "0.7.0",
     "grunt-contrib-concat": "0.3.0",
