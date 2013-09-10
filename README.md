@@ -18,6 +18,9 @@ This project contains all pieces that togehter builds up `tt.js`. Here are a few
     # Run the tests during development
     $ grunt test
     
+    # Continuously run the tests during development
+    $ grunt watch
+    
     # When you're ready to release a new version. Bump the version number,
     # tag a new release and push the code to GitHub
     $ grunt bump
