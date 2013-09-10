@@ -64,16 +64,14 @@ module.exports = (grunt) ->
         src: '<%= config.build %>/*.js'
         dest: '<%= config.build %>/tt.js'
 
-  grunt.registerTask 'build', ->
-    grunt.task.run [
-      'clean:build'
-      'coffee:build'
-      'concat:build'
-      'copy:build'
-    ]
+  grunt.registerTask 'build', [
+    'clean:build'
+    'coffee:build'
+    'concat:build'
+    'copy:build'
+  ]
 
-  grunt.registerTask 'release', ->
-    grunt.task.run [
-      'build'
-      's3'
-    ]
+  grunt.registerTask 'release', [
+    'build'
+    's3'
+  ]
