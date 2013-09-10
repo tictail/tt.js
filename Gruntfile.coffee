@@ -86,6 +86,17 @@ module.exports = (grunt) ->
             'node_modules'
           ]
 
+    watch:
+      test:
+        files: [
+          '<%= config.test %>/{,*/}*.coffee'
+          '<%= config.src %>/{,*/}*.coffee'
+          'test/index.html'
+        ]
+        tasks: [
+          'test'
+        ]
+
     mocha:
       all:
         options:
