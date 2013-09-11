@@ -54,19 +54,23 @@ class Native
     @_trigger "reportSize", {width: width, height: height}
 
   # Show the Tictail dashboard share dialog with the given
-  # heading and message. The given onComplete function is called
-  # with a Boolean indicating whether the user clicked share (true)
-  # or cancelled (false).
+  # heading and message.
   showShareDialog: (options) ->
+    deferred = $.Deferred()
+
     @_trigger "showShareDialog", {
       heading: options.heading
       message: options.message
     }
 
-    @_events.one "shareDialogShown", (e, data) ->
-      options.onComplete? data
+    @_events.one "shareDialogShown", (event, shared) ->
+      if shared
+        deferred.resolve()
+      else
+        deferred.reject()
 
-    this
+    return deferred
+
 
   showStatus: (label) ->
     @_trigger "showStatus", label

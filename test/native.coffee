@@ -98,3 +98,30 @@ describe 'tt-native', ->
         TT.native.PARENT_ORIGIN
       )
 
+  describe '#showShareDialog', ->
+    it 'should resolve on successful share', (done) ->
+      TT.native.showShareDialog({heading: 'My heading', message: 'My message'})
+        .then(->
+          window.parent.postMessage.should.have.been.calledWith(
+            JSON.stringify(
+              eventName: 'showShareDialog',
+              eventData: {heading: 'My heading', message: 'My message'}
+            ),
+            TT.native.PARENT_ORIGIN
+          )
+          done()
+        )
+
+      window.postMessage(
+        JSON.stringify(eventName: 'shareDialogShown', eventData: true),
+        TT.native.PARENT_ORIGIN
+      )
+
+    it 'should reject when the user aborts the sharing process', (done) ->
+      TT.native.showShareDialog({heading: 'My heading', message: 'My message'})
+        .fail(-> done())
+
+      window.postMessage(
+        JSON.stringify(eventName: 'shareDialogShown', eventData: false),
+        TT.native.PARENT_ORIGIN
+      )
