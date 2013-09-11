@@ -27,4 +27,7 @@ class API
   delete: (endpoint) ->
     @ajax {endpoint: endpoint, type: 'DELETE'}
 
+  patch: (endpoint) ->
+    @ajax {endpoint: endpoint, type: 'PATCH'}
+
 window.TT.api = new API
