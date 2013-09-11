@@ -19,17 +19,13 @@ class Native
     @_trigger "requestAccess"
     @_events.one "access", (e, {accessToken, store}) =>
       @accessToken = accessToken
-      @store = store
 
       TT.api.accessToken = accessToken
 
-      $("#accessToken").text(accessToken)
-      $("#storeId").text(store.id)
-
       @loaded()
-      callback? store
+      callback? {accessToken: accessToken}
 
-    @_events.on "requestSize", @reportSize.bind(this)
+    @_events.on "requestSize", @reportSize
 
   loading: => @_trigger "loading"
 
