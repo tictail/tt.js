@@ -97,5 +97,4 @@ class Native
 
       @_events.trigger data.eventName, data.eventData
 
-window.TT.Native = Native
 window.TT.native = new Native
