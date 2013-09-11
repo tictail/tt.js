@@ -45,18 +45,11 @@ class Native
   loaded: => @_trigger "loaded"
 
   # Report the size to the parent frame so that the iframe containing this
-  # app is resized. The options parameter can either contain a width and
-  # height property, or an element property containing a jQuery compatible
-  # selector string. If called without arguments, the outer size of the <html>
-  # element is reported.
-  reportSize: (options) ->
-    width = height = 0
-    if options?.width and options?.height
-      {width, height} = options
-    else
-      $el = $(options?.element or "html")
-      width = $el.outerWidth()
-      height = $el.outerHeight()
+  # app is resized.
+  reportSize: (options) =>
+    $el = $("html")
+    width = $el.outerWidth()
+    height = $el.outerHeight()
 
     @_trigger "reportSize", {width: width, height: height}
 
