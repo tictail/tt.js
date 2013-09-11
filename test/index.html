@@ -27,5 +27,10 @@
 
     <!-- Include our tests -->
     <script src="test_api.js"></script>
+    <script>
+      if (!window.PHANTOMJS) {
+        mocha.run()
+      }
+    </script>
   </body>
 </html>
