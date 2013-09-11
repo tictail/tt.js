@@ -14,6 +14,7 @@ describe "tt-api", ->
       @defaults =
         url: 'https://api.tictail.com/v1/foo'
         headers: 'Authorization': 'Bearer abc'
+        contentType: 'application/json'
 
     it 'should GET an endpoint', ->
       TT.api.get('v1/foo')
