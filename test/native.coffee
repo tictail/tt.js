@@ -44,3 +44,21 @@ describe 'tt-native', ->
         JSON.stringify(eventName: 'error', eventData: {message: 'some error'}),
         TT.native.PARENT_ORIGIN
       )
+
+  describe '#loading', ->
+    it 'should trigger the corresponding event in the dashboard', ->
+      TT.native.loading()
+
+      window.parent.postMessage.should.have.been.calledWith(
+        JSON.stringify(eventName: 'loading'),
+        TT.native.PARENT_ORIGIN
+      )
+
+  describe '#loaded', ->
+    it 'should trigger the corresponding event in the dashboard', ->
+      TT.native.loaded()
+
+      window.parent.postMessage.should.have.been.calledWith(
+        JSON.stringify(eventName: 'loaded'),
+        TT.native.PARENT_ORIGIN
+      )
