@@ -1,4 +1,10 @@
 describe 'tt-native', ->
+  beforeEach ->
+    sinon.spy(window.parent, 'postMessage')
+
+  afterEach ->
+    window.parent.postMessage.restore()
+
   it 'should define the native namespace in the TT object', ->
     TT.native.should.be.a('object')
 
@@ -6,10 +12,6 @@ describe 'tt-native', ->
     beforeEach ->
       # Change the origin when running the tests so we don't need to remap tictail.com
       TT.native.PARENT_ORIGIN = 'http://127.0.0.1:9000'
-      sinon.spy(window.parent, 'postMessage')
-
-    afterEach ->
-      window.parent.postMessage.restore()
 
     it 'should resolve the promise with the accessToken in place', (done) ->
       TT.native.init()
