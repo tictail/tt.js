@@ -103,6 +103,7 @@ module.exports = (grunt) ->
           run: true
           bail: false
           log: true
+          reporter: 'Spec'
           urls: ['http://127.0.0.1:9000/index.html']
 
 
