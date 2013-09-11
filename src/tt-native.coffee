@@ -13,19 +13,22 @@ class Native
   # Initalize TT.js and call the callback with the current store when finished.
   # This should ideally be done before the rest of the application is loaded, e.g
   # TT.init(MyApp.init).
-  init: (callback) ->
+  init: () ->
     @_setupMessagingEvents()
 
-    @_trigger "requestAccess"
-    @_events.one "access", (e, {accessToken, store}) =>
-      @accessToken = accessToken
-
-      TT.api.accessToken = accessToken
-
-      @loaded()
-      callback? {accessToken: accessToken}
+    deferred = $.Deferred()
 
     @_events.on "requestSize", @reportSize
+    @_trigger "requestAccess"
+    @_events.one "access", (e, {accessToken}) =>
+      @accessToken = accessToken
+
+      if TT.api?
+        TT.api.accessToken = @accessToken
+
+      @loaded()
+
+      deferred.resolve()
 
   loading: => @_trigger "loading"
 
