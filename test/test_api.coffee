@@ -1,7 +1,7 @@
 describe "tt-api", ->
   beforeEach ->
     TT.api.accessToken = 'abc'
-    sinon.spy($, "ajax")
+    sinon.stub($, "ajax")
 
   afterEach ->
     $.ajax.restore()
