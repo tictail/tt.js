@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="mocha/mocha.css" />
   </head>
   <body>
-    <!-- Show the test output if in browser -->
+    <!-- Show the spec output if in browser -->
     <div id="mocha"></div>
 
     <script src="jquery-browser/lib/jquery.js"></script>
 
-    <!-- Use mocha along with chai for should based testing -->
+    <!-- Use mocha, chai along with sinon for testing using specs -->
     <script src="mocha/mocha.js"></script>
     <script src="chai/chai.js"></script>
     <script src="sinon/pkg/sinon.js"></script>
@@ -22,13 +22,13 @@
       mocha.setup('bdd');
     </script>
 
-    <!-- Include test subjects -->
+    <!-- Include spec subjects -->
     <script src="tt-api.js"></script>
     <script src="tt-native.js"></script>
 
-    <!-- Include our tests -->
     <script src="test_api.js"></script>
     <script src="test_native.js"></script>
+    <!-- Include our specs -->
     <script>
       if (!window.PHANTOMJS) {
         mocha.run()
