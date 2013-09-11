@@ -60,3 +60,31 @@ describe 'tt-native', ->
         JSON.stringify(eventName: 'loaded'),
         TT.native.PARENT_ORIGIN
       )
+
+  describe '#reportSize', ->
+    beforeEach ->
+      $('html')
+        .width(50)
+        .height(100)
+
+    it 'should report the size of the apps html back to the dashboard', ->
+      TT.native.reportSize()
+
+      window.parent.postMessage.should.have.been.calledWith(
+        JSON.stringify(eventName: 'reportSize', eventData: {width: 50, height: 100}),
+        TT.native.PARENT_ORIGIN
+      )
+
+    it 'should respond with its size when a requestSize message is received', (done) ->
+      window.postMessage(
+        JSON.stringify(eventName: 'requestSize'),
+        TT.native.PARENT_ORIGIN
+      )
+
+      setTimeout(=>
+        window.parent.postMessage.should.have.been.calledWith(
+          JSON.stringify(eventName: 'reportSize', eventData: {width: 50, height: 100}),
+          TT.native.PARENT_ORIGIN
+        )
+        done()
+      , 1)
