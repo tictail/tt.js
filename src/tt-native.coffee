@@ -4,19 +4,20 @@ unless window.TT
 class Native
   PARENT_ORIGIN: "https://tictail.com"
 
-  accessToken: null
+  constructor: ->
+    @accessToken = null
 
-  _events: $ {}
+    @_events = $ {}
+    @_events.on "requestSize", @reportSize
+
+    @_setupMessagingEvents()
 
   # Initalize TT.js and call the callback with the current store when finished.
   # This should ideally be done before the rest of the application is loaded, e.g
   # TT.init(MyApp.init).
-    @_setupMessagingEvents()
-
   init: ->
     deferred = $.Deferred()
 
-    @_events.on "requestSize", @reportSize
     @_trigger "requestAccess"
     @_events.one "access", (e, {accessToken}) =>
       @accessToken = accessToken
