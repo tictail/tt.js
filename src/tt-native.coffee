@@ -28,6 +28,17 @@ class Native
 
       deferred.resolve()
 
+    @_events.one "error", (event, {message}) =>
+      @accessToken = null
+
+      if TT.api?
+        TT.api.accessToken = @accessToken
+
+      deferred.reject(message)
+
+    return deferred
+
+
   loading: => @_trigger "loading"
 
   loaded: => @_trigger "loaded"

@@ -30,8 +30,15 @@ describe 'tt-native', ->
         TT.native.PARENT_ORIGIN
       )
 
+    it 'should reject the promise if there was an error', (done) ->
+      TT.native.init()
+        .fail((error) ->
+          error.should.equal('some error')
+          done()
+        )
+
       # Simulate the protocol that our dashboard uses during the auth dance
       window.postMessage(
-        JSON.stringify(eventName: "access", eventData: {accessToken: "abc123"}),
+        JSON.stringify(eventName: 'error', eventData: {message: 'some error'}),
         TT.native.PARENT_ORIGIN
       )
