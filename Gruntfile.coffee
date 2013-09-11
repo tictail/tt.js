@@ -13,7 +13,6 @@ module.exports = (grunt) ->
     coffee:
       test:
         expand: true
-        cwd: '<%= config.test %>'
         src: '{,*/}*.coffee'
         dest: '<%= config.tmp %>'
         ext: '.js'
