@@ -1,7 +1,7 @@
-describe "tt-api", ->
+describe 'tt-api', ->
   beforeEach ->
     TT.api.accessToken = 'abc'
-    sinon.stub($, "ajax")
+    sinon.stub($, 'ajax')
 
   afterEach ->
     $.ajax.restore()
@@ -9,7 +9,7 @@ describe "tt-api", ->
   it 'should define the api namespace in the TT object', ->
     TT.api.should.be.a('object')
 
-  describe "can talk to the API", ->
+  describe 'can talk to the API', ->
     before ->
       @defaults =
         url: 'https://api.tictail.com/v1/foo'
