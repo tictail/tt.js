@@ -88,3 +88,13 @@ describe 'tt-native', ->
         )
         done()
       , 1)
+
+  describe '#showStatus', ->
+    it 'should trigger the corresponding event in the dashboard', ->
+      TT.native.showStatus('$aved')
+
+      window.parent.postMessage.should.have.been.calledWith(
+        JSON.stringify(eventName: 'showStatus', eventData: '$aved'),
+        TT.native.PARENT_ORIGIN
+      )
+
