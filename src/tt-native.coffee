@@ -4,8 +4,6 @@ unless window.TT
 class Native
   PARENT_ORIGIN: "https://tictail.com"
 
-  store: null
-
   accessToken: null
 
   _events: $ {}
