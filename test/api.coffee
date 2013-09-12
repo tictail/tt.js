@@ -41,7 +41,7 @@ describe 'tt-api', ->
         $.extend({type: 'DELETE'}, @defaults))
 
     it 'should PATCH to an endpoint', ->
-      TT.api.patch('v1/foo')
+      TT.api.patch('v1/foo', {})
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'PATCH'}, @defaults))
+        $.extend({type: 'PATCH', data: {}}, @defaults))
