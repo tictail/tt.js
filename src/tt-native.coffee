@@ -141,7 +141,6 @@ class Native
   showStatus: (message) ->
     @_trigger "showStatus", message
 
-  # Trigger an event on the parent frame
   _trigger: (eventName, eventData) ->
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
