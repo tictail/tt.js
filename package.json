@@ -1,7 +1,7 @@
 {
   "name": "tt.js",
-  "version": "0.0.1",
   "description": "Umbrella project for tt.js",
+  "version": "0.10.0",
   "homepage": "http://tictail.com/",
   "author": "Tictail AB",
   "repository": {
