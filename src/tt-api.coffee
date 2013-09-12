@@ -8,6 +8,7 @@ class API
 
   ###*
   Access token of the store for which this app is installed in.
+
   @property accessToken
   ###
   accessToken: null
@@ -15,6 +16,7 @@ class API
 
   ###*
   Proxy to `$.ajax` with the `contentType` and `headers` set.
+
   @method ajax
   @param {Object} options The standard options that you would give `$.ajax`
   ###
@@ -30,6 +32,7 @@ class API
 
   ###*
   Shorthand for performing `GET` requests to the API.
+
   @method get
   @param {String} endpoint The endpoint to get
   ###
@@ -38,6 +41,7 @@ class API
 
   ###*
   Shorthand for performing `POST` requests to the API.
+
   @method post
   @param {String} endpoint The endpoint to post against
   @param {String} data JSON to send to the API
@@ -48,6 +52,7 @@ class API
 
   ###*
   Shorthand for performing `PUT` requests to the API.
+
   @method put
   @param {String} endpoint The endpoint to put against
   @param {String} data JSON to send to the API
@@ -58,6 +63,7 @@ class API
 
   ###*
   Shorthand for performing `DELETE` requests to the API.
+
   @method delete
   @param {String} endpoint The endpoint to delete against
   ###
@@ -66,6 +72,7 @@ class API
 
   ###*
   Shorthand for performing `PATCH` requests to the API.
+
   @method patch
   @param {String} endpoint The endpoint to patch against
   @param {String} data JSON to send to the API
