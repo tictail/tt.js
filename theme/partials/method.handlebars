@@ -1,0 +1,59 @@
+<div id="method_{{name}}" class="method">
+  <h3>
+    {{name}}
+    {{#if params}}
+        (
+        {{#params}}
+            {{#if optional}}
+              [{{name}}{{#if optdefault}}={{optdefault}}{{/if}}]
+            {{else}}
+              {{name}}
+            {{/if}}
+        {{/params}}
+        )
+    {{else}}
+      ()
+    {{/if}}
+  </h3>
+
+  {{#if deprecated}}
+    <p class="deprecated" title="{{deprecationMessage}}">{{deprecationMessage}}</p>
+  {{/if}}
+
+  {{#if since}}
+    <p class="available-since">{{since}}</p>
+  {{/if}}
+
+  <p class="description">{{{methodDescription}}}</p>
+  {{#if params}}
+    <dl class="field-list">
+      <dt class="field-name">Parameters</dt>
+      <dd class="field-body">
+        <dl class="field-list dl-horizontal">
+        {{#params}}
+          {{#if optional}}
+            <dt class="field-name">{{name}}</dt>
+            <dd class="field-body">
+              <strong>{{#crossLink type}}{{/crossLink}}</strong>
+              {{{description}}}
+            </dd>
+          {{else}}
+            <dt class="field-name">{{name}}</dt>
+            <dd class="field-body">
+              <strong>{{#crossLink type}}{{/crossLink}}</strong>
+              {{{description}}}
+            </dd>
+          {{/if}}
+        {{/params}}
+        </dl>
+      </dl>
+    {{/if}}
+
+    {{#return}}
+      <dl class="field-list">
+        <dt class="field-name">Returns</dt>
+        <dd class="field-body">
+          {{{description}}}
+        </div>
+    {{/return}}
+</div>

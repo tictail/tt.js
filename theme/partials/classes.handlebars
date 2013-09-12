@@ -1,0 +1,12 @@
+<h2>{{name}}</h2>
+{{#if methods}}
+    {{#methods}}
+        {{>method}}
+    {{/methods}}
+{{/if}}
+
+{{#if properties}}
+    {{#properties}}
+        {{>props}}
+    {{/properties}}
+{{/if}}

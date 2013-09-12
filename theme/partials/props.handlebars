@@ -1,0 +1,11 @@
+<div id="property_{{name}}" class="property">
+  <h3>{{name}}</h3>
+
+  {{#if deprecated}}
+    <p class="deprecated" title="{{deprecationMessage}}">{{deprecationMessage}}</p>
+  {{/if}}
+
+  <div class="description">
+    {{{propertyDescription}}}
+  </div>
+</div>
