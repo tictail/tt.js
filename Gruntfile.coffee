@@ -58,6 +58,8 @@ module.exports = (grunt) ->
             '**.*'
           ]
           dest: '<%= config.build %>/'
+          filter: (src) ->
+            return not src.match(/\d+\.\d+\.\d+/)
           rename: (dest, src) ->
             parts = src.split(".")
             extension = parts.pop()
