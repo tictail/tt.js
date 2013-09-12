@@ -9,7 +9,19 @@ class Native
     @_events = $ {}
     @_events.on "requestSize", @reportSize
 
-    @_setupMessagingEvents()
+    @_configurePostMessage()
+
+  _configurePostMessage: ->
+    $(window).on "message", (event) =>
+      event = event.originalEvent
+      return unless event.origin is @PARENT_ORIGIN
+
+      try
+        data = JSON.parse event.data
+      catch e
+        return
+
+      @_events.trigger data.eventName, data.eventData
 
   # Initalize TT.js and call the callback with the current store when finished.
   # This should ideally be done before the rest of the application is loaded, e.g
@@ -79,19 +91,5 @@ class Native
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
     this
-
-  # Convert incoming messages to their own events on the @_events object,
-  # assuming every message is a JSON string containing the keys eventName
-  # and eventData.
-  _setupMessagingEvents: ->
-    $(window).on "message", (e) =>
-      return unless e.originalEvent.origin is @PARENT_ORIGIN
-
-      try
-        data = JSON.parse e.originalEvent.data
-      catch e
-        return
-
-      @_events.trigger data.eventName, data.eventData
 
 window.TT.native = new Native
