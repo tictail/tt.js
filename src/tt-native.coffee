@@ -81,7 +81,7 @@ class Native
   # Dismisses the small loading spinner inside the Tictail Dashboard triggered
   # by `TT.native.loading`.
   #
-  # @method loading
+  # @method loaded
   ###
   loaded: => @_trigger "loaded"
 
