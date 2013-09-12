@@ -3,9 +3,9 @@ window.TT = {} unless window.TT
 class Native
   PARENT_ORIGIN: "https://tictail.com"
 
-  constructor: ->
-    @accessToken = null
+  accessToken: null
 
+  constructor: ->
     @_events = $ {}
     @_events.on "requestSize", @reportSize
 
