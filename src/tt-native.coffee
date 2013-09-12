@@ -90,6 +90,5 @@ class Native
   _trigger: (eventName, eventData) ->
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
-    this
 
 window.TT.native = new Native
