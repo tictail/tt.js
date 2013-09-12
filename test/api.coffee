@@ -23,16 +23,16 @@ describe 'tt-api', ->
         $.extend({type: 'GET'}, @defaults))
 
     it 'should POST to an endpoint', ->
-      TT.api.post('v1/foo')
+      TT.api.post('v1/foo', {})
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'POST'}, @defaults))
+        $.extend({type: 'POST', data: {}}, @defaults))
 
     it 'should PUT to an endpoint', ->
-      TT.api.put('v1/foo')
+      TT.api.put('v1/foo', {})
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'PUT'}, @defaults))
+        $.extend({type: 'PUT', data: {}}, @defaults))
 
     it 'should DELETE to an endpoint', ->
       TT.api.delete('v1/foo')
