@@ -45,7 +45,7 @@ class Native
 
   # Report the size to the parent frame so that the iframe containing this
   # app is resized.
-  reportSize: (options) =>
+  reportSize: =>
     $el = $("html")
     width = $el.outerWidth()
     height = $el.outerHeight()
