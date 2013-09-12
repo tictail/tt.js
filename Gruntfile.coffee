@@ -105,6 +105,19 @@ module.exports = (grunt) ->
           reporter: 'Spec'
           urls: ['http://127.0.0.1:9000/index.html']
 
+    yuidoc:
+      compile:
+        name: '<%= pkg.name %>'
+        description: '<%= pkg.description %>'
+        version: '<%= pkg.version %>'
+        url: '<%= pkg.homepage %>'
+        options:
+          paths: 'src'
+          syntaxtype: "coffee"
+          extension: ".coffee"
+          themedir: 'theme'
+          outdir: 'docs'
+
 
   grunt.registerTask 'build', [
     'clean:build'
@@ -123,4 +136,8 @@ module.exports = (grunt) ->
     'coffee:test'
     'connect:test'
     'mocha'
+  ]
+
+  grunt.registerTask 'docs', [
+    'yuidoc:compile'
   ]
