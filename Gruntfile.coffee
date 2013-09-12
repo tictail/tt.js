@@ -27,7 +27,7 @@ module.exports = (grunt) ->
 
     s3:
       options:
-        bucket: 'com.tictail.cdn.apps.assets'
+        bucket: 'sdk.ttcdn.co'
         region: 'eu-west-1'
         access: 'public-read'
 
