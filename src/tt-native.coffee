@@ -66,12 +66,12 @@ class Native
 
   # Show the Tictail dashboard share dialog with the given
   # heading and message.
-  showShareDialog: (options) ->
+  showShareDialog: (heading, message) ->
     deferred = $.Deferred()
 
     @_trigger "showShareDialog", {
-      heading: options.heading
-      message: options.message
+      heading: heading
+      message: message
     }
 
     @_events.one "shareDialogShown", (event, shared) ->

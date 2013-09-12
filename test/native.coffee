@@ -100,7 +100,7 @@ describe 'tt-native', ->
 
   describe '#showShareDialog', ->
     it 'should resolve on successful share', (done) ->
-      TT.native.showShareDialog({heading: 'My heading', message: 'My message'})
+      TT.native.showShareDialog('My heading', 'My message')
         .then(->
           window.parent.postMessage.should.have.been.calledWith(
             JSON.stringify(
