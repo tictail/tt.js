@@ -1,5 +1,4 @@
-unless window.TT
-  window.TT = {}
+window.TT = {} unless window.TT
 
 class API
   url: "https://api.tictail.com"

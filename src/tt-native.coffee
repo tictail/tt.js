@@ -1,5 +1,4 @@
-unless window.TT
-  window.TT = {}
+window.TT = {} unless window.TT
 
 class Native
   PARENT_ORIGIN: "https://tictail.com"
