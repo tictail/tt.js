@@ -1,8 +1,19 @@
 window.TT = {} unless window.TT
 
+###*
+# @class TT.native
+###
 class Native
   PARENT_ORIGIN: "https://tictail.com"
 
+  ###*
+  # You should not need to use this access token when performing calls to the
+  # API using `TT.api`. However, it could be a good idea to save this access
+  # token if you plan to call the API at a later time, i.e. to push feed card
+  # items.
+  #
+  # @property accessToken
+  ###
   accessToken: null
 
   constructor: ->
@@ -23,9 +34,15 @@ class Native
 
       @_events.trigger data.eventName, data.eventData
 
-  # Initalize TT.js and call the callback with the current store when finished.
-  # This should ideally be done before the rest of the application is loaded, e.g
-  # TT.init(MyApp.init).
+  ###*
+  # This method is the magic entry point to native apps, this method initializes
+  # tt.js by performing the handshake with the Tictail Dashboard and gives the
+  # methods inside `TT.api` access to talk to the API.
+  #
+  # @method init
+  # @return {Promise} A promise that will resolve when the handshake was successful.
+  ###
+
   init: ->
     deferred = $.Deferred()
 
@@ -50,13 +67,32 @@ class Native
 
     return deferred
 
-
+  ###*
+  # Show a small loading spinner inside the Tictail Dashboard. This method
+  # is useful for providing feedback to the user if your app is doing something
+  # time consuming, i.e. fetching data over the network. Make sure to call
+  # `TT.native.loaded()` when your app has finished with its task at hand.
+  #
+  # @method loading
+  ###
   loading: => @_trigger "loading"
 
+  ###*
+  # Dismisses the small loading spinner inside the Tictail Dashboard triggered
+  # by `TT.native.loading`.
+  #
+  # @method loading
+  ###
   loaded: => @_trigger "loaded"
 
-  # Report the size to the parent frame so that the iframe containing this
-  # app is resized.
+  ###*
+  # Reports the app size back to the Tictail Dashboard. Make sure to always
+  # call this method when the size of your app changes inside the DOM. This
+  # is used when your app is displayed inside the Tictail Feed. As your app
+  # is displayed inside an iframe we need to know the size of your app.
+  #
+  # @method reportSize
+  ###
   reportSize: =>
     $el = $("html")
     width = $el.outerWidth()
@@ -64,8 +100,19 @@ class Native
 
     @_trigger "reportSize", {width: width, height: height}
 
-  # Show the Tictail dashboard share dialog with the given
-  # heading and message.
+  ###*
+  # Show the share dialog in the Tictail Dashboard. This share dialog is a
+  # way for your app to share a message in social media on behalf of the user.
+  #
+  # @method showShareDialog
+  # @param {String} heading The heading of the share dialog. This should be
+  # a short text describing why the user is presented to share something.
+  # @param {String} message A prefilled message that the user is about to share,
+  # the user will always have the possibility to change what is about to be
+  # shared.
+  # @return {Promise} A promise that will resolve if the user decides to share
+  # your message or rejects if the user decideds to abort the sharing process.
+  ###
   showShareDialog: (heading, message) ->
     deferred = $.Deferred()
 
@@ -83,6 +130,14 @@ class Native
     return deferred
 
 
+  ###*
+  # Use this method to show a message to the user inside the Tictail Dashboard.
+  # This could be used to show the results of actions inside your application,
+  # i.e. a short "Saved" when the users data have been saved.
+  #
+  # @method showStatus
+  # @param {String} message The short message to show to the user.
+  ###
   showStatus: (message) ->
     @_trigger "showStatus", message
 
