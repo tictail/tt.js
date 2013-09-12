@@ -9,6 +9,7 @@ module.exports = (grunt) ->
       test: 'test'
       build: 'build'
       tmp: '.tmp'
+      docs: 'docs'
 
     coffee:
       test:
@@ -69,12 +70,16 @@ module.exports = (grunt) ->
         }]
 
     concat:
-      options:
-        banner: "/*! v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n\n",
-
       build:
+        options:
+          banner: "/*! v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n\n",
         src: '<%= config.build %>/*.js'
         dest: '<%= config.build %>/tt.js'
+
+      docs:
+        src: '<%= config.docs %>/classes/*.html'
+        dest: '<%= config.build %>/tt.js.docs.html'
+
 
     connect:
       test:
@@ -130,6 +135,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'release', [
     'build'
+    'docs'
     's3'
   ]
 
@@ -142,4 +148,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'docs', [
     'yuidoc:compile'
+    'concat:docs'
+    'copy:build'
   ]
