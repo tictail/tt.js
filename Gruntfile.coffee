@@ -77,7 +77,7 @@ module.exports = (grunt) ->
         dest: '<%= config.build %>/tt.js'
 
       docs:
-        src: ['<%= config.docs %>/classes/TT.native.html', '!<%= config.docs %>/classes/*.html', '<%= config.docs %>/classes/TT.native.html']
+        src: ['<%= config.docs %>/classes/*.html', '!<%= config.docs %>/classes/TT.api.html', '<%= config.docs %>/classes/TT.api.html']
         dest: '<%= config.build %>/tt.js.docs.html'
 
 
