@@ -71,8 +71,8 @@ class Native
     return deferred
 
 
-  showStatus: (label) ->
-    @_trigger "showStatus", label
+  showStatus: (message) ->
+    @_trigger "showStatus", message
 
   # Trigger an event on the parent frame
   _trigger: (eventName, eventData) ->
