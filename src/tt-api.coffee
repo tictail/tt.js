@@ -1,13 +1,13 @@
 window.TT = {} unless window.TT
 
 class API
-  url: "https://api.tictail.com"
+  _url: "https://api.tictail.com"
 
   accessToken: null
 
   ajax:(options) ->
     defaults =
-      url: "#{@url}/#{options.endpoint}"
+      url: "#{@_url}/#{options.endpoint}"
       contentType: 'application/json'
       headers:
         Authorization: "Bearer #{@accessToken}"
