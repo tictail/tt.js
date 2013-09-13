@@ -9,7 +9,7 @@ module.exports = (grunt) ->
       test: 'test'
       build: 'build'
       tmp: '.tmp'
-      docs: 'docs'
+      docs: '.tmp/docs'
 
     coffee:
       test:
@@ -80,7 +80,6 @@ module.exports = (grunt) ->
         src: ['<%= config.docs %>/classes/*.html', '!<%= config.docs %>/classes/TT.api.html', '<%= config.docs %>/classes/TT.api.html']
         dest: '<%= config.build %>/tt.js.docs.html'
 
-
     connect:
       test:
         options:
@@ -122,8 +121,8 @@ module.exports = (grunt) ->
           paths: 'src'
           syntaxtype: "coffee"
           extension: ".coffee"
-          themedir: 'theme'
-          outdir: 'docs'
+          themedir: 'docs/theme'
+          outdir: '<%= config.docs %>'
 
 
   grunt.registerTask 'build', [
