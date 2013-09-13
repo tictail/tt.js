@@ -19,6 +19,7 @@ class API
 
   @method ajax
   @param {Object} options The standard options that you would give `$.ajax`
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   ajax:(options) ->
     defaults =
@@ -38,6 +39,7 @@ class API
 
   @method get
   @param {String} endpoint The endpoint to get
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   get: (endpoint) ->
     @ajax {endpoint: endpoint, type: 'GET'}
@@ -48,6 +50,7 @@ class API
   @method post
   @param {String} endpoint The endpoint to post against
   @param {Object} Object to serialize and send to the API as JSON
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   post: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'POST'}
@@ -59,6 +62,7 @@ class API
   @method put
   @param {String} endpoint The endpoint to put against
   @param {Object} Object to serialize and send to the API as JSON
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   put: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PUT'}
@@ -69,6 +73,7 @@ class API
 
   @method delete
   @param {String} endpoint The endpoint to delete against
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   delete: (endpoint) ->
     @ajax {endpoint: endpoint, type: 'DELETE'}
@@ -79,6 +84,7 @@ class API
   @method patch
   @param {String} endpoint The endpoint to patch against
   @param {Object} Object to serialize and send to the API as JSON
+  @return {Promise} A promise that will resolve if the request was successful or otherwise fail
   ###
   patch: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PATCH'}
