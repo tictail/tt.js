@@ -27,6 +27,9 @@ class API
       headers:
         Authorization: "Bearer #{@accessToken}"
 
+    if $.type(options.data) != 'string'
+      options.data = JSON.stringify(options.data)
+
     $.ajax $.extend(true, defaults, options)
 
 
@@ -44,7 +47,7 @@ class API
 
   @method post
   @param {String} endpoint The endpoint to post against
-  @param {String} data JSON to send to the API
+  @param {Object} Object to serialize and send to the API as JSON
   ###
   post: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'POST'}
@@ -55,7 +58,7 @@ class API
 
   @method put
   @param {String} endpoint The endpoint to put against
-  @param {String} data JSON to send to the API
+  @param {Object} Object to serialize and send to the API as JSON
   ###
   put: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PUT'}
@@ -75,7 +78,7 @@ class API
 
   @method patch
   @param {String} endpoint The endpoint to patch against
-  @param {String} data JSON to send to the API
+  @param {Object} Object to serialize and send to the API as JSON
   ###
   patch: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PATCH'}

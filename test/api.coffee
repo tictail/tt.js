@@ -22,17 +22,23 @@ describe 'tt-api', ->
       $.ajax.should.have.been.calledWithMatch(
         $.extend({type: 'GET'}, @defaults))
 
-    it 'should POST to an endpoint', ->
-      TT.api.post('v1/foo', {})
+    it 'should serialize the data parameter', ->
+      TT.api.post('v1/foo', {foo: 'bar'})
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'POST', data: {}}, @defaults))
+        $.extend({type: 'POST', data: '{"foo":"bar"}'}, @defaults))
+
+    it 'should POST to an endpoint', ->
+      TT.api.post('v1/foo', '{}')
+
+      $.ajax.should.have.been.calledWithMatch(
+        $.extend({type: 'POST', data: '{}'}, @defaults))
 
     it 'should PUT to an endpoint', ->
-      TT.api.put('v1/foo', {})
+      TT.api.put('v1/foo', '{}')
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'PUT', data: {}}, @defaults))
+        $.extend({type: 'PUT', data: '{}'}, @defaults))
 
     it 'should DELETE to an endpoint', ->
       TT.api.delete('v1/foo')
@@ -41,7 +47,7 @@ describe 'tt-api', ->
         $.extend({type: 'DELETE'}, @defaults))
 
     it 'should PATCH to an endpoint', ->
-      TT.api.patch('v1/foo', {})
+      TT.api.patch('v1/foo', '{}')
 
       $.ajax.should.have.been.calledWithMatch(
-        $.extend({type: 'PATCH', data: {}}, @defaults))
+        $.extend({type: 'PATCH', data: '{}'}, @defaults))
