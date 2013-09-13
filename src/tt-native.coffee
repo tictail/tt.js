@@ -42,7 +42,6 @@ class Native
   @method init
   @return {Promise} A promise that will resolve when the handshake was successful.
   ###
-
   init: ->
     deferred = $.Deferred()
 
