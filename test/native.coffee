@@ -87,7 +87,7 @@ describe 'tt-native', ->
           TT.native.PARENT_ORIGIN
         )
         done()
-      , 1)
+      , 0)
 
   describe '#showStatus', ->
     it 'should trigger the corresponding event in the dashboard', ->
