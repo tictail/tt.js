@@ -89,6 +89,15 @@ describe 'tt-native', ->
         done()
       , 0)
 
+  describe '#performCard', ->
+    it 'should trigger the corresponding event in the dashboard', ->
+      TT.native.performCard()
+
+      window.parent.postMessage.should.have.been.calledWith(
+        JSON.stringify(eventName: 'perform')
+        TT.native.PARENT_ORIGIN
+      )
+
   describe '#showStatus', ->
     it 'should trigger the corresponding event in the dashboard', ->
       TT.native.showStatus('$aved')

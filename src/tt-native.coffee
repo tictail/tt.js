@@ -100,6 +100,15 @@ class Native
     @_trigger "reportSize", {width: width, height: height}
 
   ###*
+  Marks the native card as performed in the Tictail Feed, closing it  and
+  removing the card from the feed. Make sure to call this method once you
+  decide that the user is done with your card.
+
+  @method performCard
+  ###
+  performCard: => @_trigger "perform"
+
+  ###*
   Show the share dialog in the Tictail Dashboard. This share dialog is a
   way for your app to share a message in social media on behalf of the user.
 
