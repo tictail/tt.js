@@ -1,4 +1,4 @@
-window.TT = {} unless window.TT
+TT = require './tt-core'
 
 ###*
 @class TT.native
@@ -153,4 +153,4 @@ class Native
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
 
-window.TT.native = new Native
+TT.native = new Native

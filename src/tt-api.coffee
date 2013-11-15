@@ -1,4 +1,4 @@
-window.TT = {} unless window.TT
+TT = require './tt-core'
 
 ###*
 @class TT.api
@@ -89,4 +89,4 @@ class API
   patch: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PATCH'}
 
-window.TT.api = new API
+TT.api = new API
