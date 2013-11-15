@@ -12,6 +12,6 @@ describe 'tt-core', ->
       TT.noConflict().should.equal before
 
     it 'should restore the previous TT value', ->
-      tt = TT.noConflict()
+      TT.noConflict()
       TT.should.equal 'noConflict test' # Set in test/index.html
 
