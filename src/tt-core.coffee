@@ -16,7 +16,7 @@ class TT
     this
 
 tt = new TT
-if typeof window.define is 'function' && window.define.amd
+if typeof window.define is 'function' and window.define.amd
   window.define 'tt', -> tt
 else
   window.TT = tt
