@@ -1,4 +1,4 @@
-window.TT = {} unless window.TT
+TT = require './tt-core'
 
 class Storage
   _parse: (json) ->
@@ -58,4 +58,4 @@ class Storage
 
     deferred
 
-window.TT.storage = new Storage
+TT.storage = new Storage

@@ -97,6 +97,10 @@ module.exports = (grunt) ->
         src: ['<%= config.tmp %>/src/tt-native.js']
         dest: '<%= config.build %>/tt-native.js'
 
+      storage:
+        src: ['<%= config.tmp %>/src/tt-storage.js']
+        dest: '<%= config.build %>/tt-storage.js'
+
     watch:
       test:
         files: [
