@@ -1,5 +1,17 @@
+MODULES = [
+  'tt'
+  'tt-api'
+  'tt-native'
+  'tt-storage'
+]
+
 module.exports = (grunt) ->
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
+
+  browserifyConfig = {build: {files: {}}}
+  for module in MODULES
+    browserifyConfig.build.files["<%= config.build %>/#{module}.js"] =
+      ["<%= config.tmp %>/src/#{module}.js"]
 
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
@@ -84,22 +96,7 @@ module.exports = (grunt) ->
             'node_modules'
           ]
 
-    browserify:
-      tt:
-        src: ['<%= config.tmp %>/src/tt.js']
-        dest: '<%= config.build %>/tt.js'
-
-      api:
-        src: ['<%= config.tmp %>/src/tt-api.js']
-        dest: '<%= config.build %>/tt-api.js'
-
-      native:
-        src: ['<%= config.tmp %>/src/tt-native.js']
-        dest: '<%= config.build %>/tt-native.js'
-
-      storage:
-        src: ['<%= config.tmp %>/src/tt-storage.js']
-        dest: '<%= config.build %>/tt-storage.js'
+    browserify: browserifyConfig
 
     watch:
       test:
