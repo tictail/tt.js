@@ -14,15 +14,14 @@ module.exports = (grunt) ->
     coffee:
       test:
         expand: true
-        src: '{,*/}*.coffee'
+        src: 'test/{,*/}*.coffee'
         dest: '<%= config.tmp %>'
         ext: '.js'
 
       build:
         expand: true
-        cwd: '<%= config.src %>'
-        src: '{,*/}*.coffee'
-        dest: '<%= config.build %>'
+        src: 'src/{,*/}*.coffee'
+        dest: '<%= config.tmp %>'
         ext: '.js'
 
     s3:
@@ -70,12 +69,6 @@ module.exports = (grunt) ->
         }]
 
     concat:
-      build:
-        options:
-          banner: "/*! v<%= pkg.version %> - <%= grunt.template.today('yyyy-mm-dd') %> */\n\n",
-        src: '<%= config.build %>/*.js'
-        dest: '<%= config.build %>/tt.js'
-
       docs:
         src: ['<%= config.docs %>/classes/*.html', '!<%= config.docs %>/classes/TT.api.html', '<%= config.docs %>/classes/TT.api.html']
         dest: '<%= config.build %>/tt.js.docs.html'
@@ -90,6 +83,19 @@ module.exports = (grunt) ->
             '<%= config.build %>'
             'node_modules'
           ]
+
+    browserify:
+      tt:
+        src: ['<%= config.tmp %>/src/tt.js']
+        dest: '<%= config.build %>/tt.js'
+
+      api:
+        src: ['<%= config.tmp %>/src/tt-api.js']
+        dest: '<%= config.build %>/tt-api.js'
+
+      native:
+        src: ['<%= config.tmp %>/src/tt-native.js']
+        dest: '<%= config.build %>/tt-native.js'
 
     watch:
       test:
@@ -128,7 +134,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', [
     'clean:build'
     'coffee:build'
-    'concat:build'
+    'browserify'
     'copy:build'
   ]
 

@@ -20,20 +20,21 @@
     <script>
       chai.should();
       mocha.setup('bdd');
+      TT = 'noConflict test';
     </script>
 
     <!-- Helpers -->
     <script src="test/spec-helpers.js"></script>
 
     <!-- Include spec subjects -->
-    <script src="tt-api.js"></script>
-    <script src="tt-native.js"></script>
-    <script src="tt-storage.js"></script>
+    <script src="tt.js"></script>
 
     <!-- Include our specs -->
+    <script src="test/core.js"></script>
     <script src="test/api.js"></script>
     <script src="test/native.js"></script>
     <script src="test/storage.js"></script>
+
     <script>
       if (!window.PHANTOMJS) {
         mocha.run()
