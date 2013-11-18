@@ -153,4 +153,9 @@ class Native
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
 
-TT.native = new Native
+if typeof define is 'function' and define.amd
+  define 'tt-native', ['jquery', 'tt-core'], ($, TT) ->
+    TT.native = new Native
+else
+  TT.native = new Native
+

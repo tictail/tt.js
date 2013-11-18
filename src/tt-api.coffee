@@ -89,4 +89,8 @@ class API
   patch: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PATCH'}
 
-TT.api = new API
+if typeof define is 'function' and define.amd
+  define 'tt-api', ['jquery', 'tt-core'], ($, TT) ->
+    TT.api = new API
+else
+  TT.api = new API

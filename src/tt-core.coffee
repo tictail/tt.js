@@ -15,11 +15,10 @@ class TT
     window.TT = @_TT
     this
 
-tt = new TT
-if typeof window.define is 'function' and window.define.amd
-  window.define 'tt', -> tt
+if typeof define is 'function' and define.amd
+  define 'tt-core', -> new TT
 else
-  window.TT = tt
+  window.TT = new TT
 
-module.exports = tt
+module.exports = window.TT
 
