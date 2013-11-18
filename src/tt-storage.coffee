@@ -7,13 +7,15 @@ class Storage
     catch e
       return {}
 
+  constructor: (@$) ->
+
   request: ->
-    deferred = $.Deferred()
+    deferred = @$.Deferred()
     setTimeout (-> deferred.resolve()), 0
     deferred
 
   get: (args...) =>
-    deferred = $.Deferred()
+    deferred = @$.Deferred()
 
     @request().then =>
       storage = @_parse localStorage['tt-storage']
@@ -26,7 +28,7 @@ class Storage
     deferred
 
   set: (data) =>
-    deferred = $.Deferred()
+    deferred = @$.Deferred()
 
     @request().then =>
       storage = @_parse localStorage['tt-storage']
@@ -38,7 +40,7 @@ class Storage
     deferred
 
   remove: (args...) ->
-    deferred = $.Deferred()
+    deferred = @$.Deferred()
 
     @request().then =>
       storage = @_parse localStorage['tt-storage']
@@ -50,7 +52,7 @@ class Storage
     deferred
 
   clear: ->
-    deferred = $.Deferred()
+    deferred = @$.Deferred()
 
     @request().then =>
       delete localStorage['tt-storage']
@@ -58,4 +60,4 @@ class Storage
 
     deferred
 
-TT.storage = new Storage
+TT.addModule 'storage', Storage
