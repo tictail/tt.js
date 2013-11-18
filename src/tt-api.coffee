@@ -13,7 +13,6 @@ class API
   ###
   accessToken: null
 
-  constructor: (@$) ->
 
   ###*
   Proxy to `$.ajax` with the `contentType` and `headers` set.
@@ -29,10 +28,10 @@ class API
       headers:
         Authorization: "Bearer #{@accessToken}"
 
-    if @$.type(options.data) != 'string'
+    if $.type(options.data) != 'string'
       options.data = JSON.stringify(options.data)
 
-    @$.ajax @$.extend(true, defaults, options)
+    $.ajax $.extend(true, defaults, options)
 
 
   ###*
@@ -90,4 +89,4 @@ class API
   patch: (endpoint, data) ->
     @ajax {endpoint: endpoint, data: data, type: 'PATCH'}
 
-TT.addModule 'api', API
+TT.api = new API
