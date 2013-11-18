@@ -16,14 +16,14 @@ class Native
   ###
   accessToken: null
 
-  constructor: (@$) ->
-    @_events = @$ {}
+  constructor: ->
+    @_events = $ {}
     @_events.on "requestSize", @reportSize
 
     @_configurePostMessage()
 
   _configurePostMessage: ->
-    @$(window).on "message", (event) =>
+    $(window).on "message", (event) =>
       event = event.originalEvent
       return unless event.origin is @PARENT_ORIGIN
 
@@ -43,7 +43,7 @@ class Native
   @return {Promise} A promise that will resolve when the handshake was successful.
   ###
   init: ->
-    deferred = @$.Deferred()
+    deferred = $.Deferred()
 
     @_trigger "requestAccess"
     @_events.one "access", (e, {accessToken}) =>
@@ -93,7 +93,7 @@ class Native
   @method reportSize
   ###
   reportSize: =>
-    $el = @$("html")
+    $el = $("html")
     width = $el.outerWidth()
     height = $el.outerHeight()
 
@@ -122,7 +122,7 @@ class Native
   your message or rejects if the user decideds to abort the sharing process.
   ###
   showShareDialog: (heading, message) ->
-    deferred = @$.Deferred()
+    deferred = $.Deferred()
 
     @_trigger "showShareDialog", {
       heading: heading
@@ -153,4 +153,9 @@ class Native
     message = JSON.stringify eventName: eventName, eventData: eventData
     window.parent.postMessage message, @PARENT_ORIGIN
 
-TT.addModule 'native', Native
+if typeof define is 'function' and define.amd
+  define 'tt-native', ['jquery', 'tt-core'], ($, TT) ->
+    TT.native = new Native
+else
+  TT.native = new Native
+
