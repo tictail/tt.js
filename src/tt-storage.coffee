@@ -3,9 +3,9 @@ TT = require './tt-core'
 class Storage
   _parse: (json) ->
     try
-      return JSON.parse json
+      JSON.parse(json) or {}
     catch e
-      return {}
+      {}
 
   request: ->
     deferred = $.Deferred()

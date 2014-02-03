@@ -53,3 +53,17 @@ describe 'tt-storage', ->
       TT.storage.clear().then ->
         localStorage.should.not.have.property 'tt-storage'
         done()
+
+  # This is only relevant until we move the storage away from localStorage
+  describe 'localStorage storage', ->
+    it 'should handle localStorage["tt-storage"] = "null"', (done) ->
+      localStorage['tt-storage'] = 'null'
+      TT.storage.get('three').then (storage) ->
+        storage.should.deep.equal {three: undefined}
+        done()
+
+    it 'should handle unparsable JSON', (done) ->
+      localStorage['tt-storage'] = "Wait a minute, this isn't JSON!"
+      TT.storage.get('three').then (storage) ->
+        storage.should.deep.equal {three: undefined}
+        done()
