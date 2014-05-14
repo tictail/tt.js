@@ -23,7 +23,7 @@ The library is composed of modules that are all packaged together with Browserif
 $ grunt build
 ```
 
-# Testing
+## Testing
 
 The *tests/* folder contains tests for the different parts of the library. To run them, use one of the following Grunt tasks:
 
@@ -35,6 +35,6 @@ $ grunt test
 $ grunt watch
 ```
 
-# Contributing
+## Contributing
 
 We appreciate both code contributions through [pull requests](https://github.com/tictail/tt.js/pulls) and feature requests / bug reports through [issues](https://github.com/tictail/tt.js/issues). Thank you for caring! 
