@@ -16,6 +16,14 @@ class Native
   ###
   accessToken: null
 
+  ###*
+  You should not need to use this store id when performing calls to the
+  API using `TT.api`. See accessToken.
+
+  @property storeId
+  ###
+  storeId: null
+
   constructor: ->
     @_events = $ {}
     @_events.on "requestSize", @reportSize
@@ -46,8 +54,9 @@ class Native
     deferred = $.Deferred()
 
     @_trigger "requestAccess"
-    @_events.one "access", (e, {accessToken}) =>
+    @_events.one "access", (e, {accessToken, store}) =>
       @accessToken = accessToken
+      @storeId = store.id
 
       if TT.api?
         TT.api.accessToken = @accessToken
@@ -152,7 +161,7 @@ class Native
   ###
   requestPayment: (token) =>
     def = $.Deferred()
-    @_trigger "requestPayment", id: token
+    @_trigger "requestPayment", token: token
     @_events.one "paymentDone", (e, data) ->
       if data.paid
         def.resolve(data)
@@ -171,9 +180,7 @@ class Native
 
   ###
   createPurchaseToken: ({title, price, currency}) =>
-    endpoint = @insertUrlParameters "v1/stores/:store_id/purchases", {
-      store_id: @store.id
-    }
+    endpoint = "v1/stores/"+@storeId+"/purchases"
     params =
       endpoint: endpoint
       type: "POST"
