@@ -137,6 +137,64 @@ class Native
 
     return deferred
 
+  ###*
+
+  Request the payment of an in-app purchase, represented by a
+  token. This will cause the IAP payment flow to begin and the in-app
+  payment modal to popup
+
+  @method requestPayment
+  @param {String} token, the token identifiying
+  the in-app purchase that is to be paid.
+  @return {Promise} A promise that resolves if and only if the user pays for the purchase.
+  It is rejected if the flow did not cause the user to be charged.
+
+  ###
+  requestPayment: (token) =>
+    def = $.Deferred()
+    @_trigger "requestPayment", id: token
+    @_events.one "paymentDone", (e, data) ->
+      if data.paid
+        def.resolve(data)
+      else
+        def.reject(data)
+
+    def
+
+  ###*
+  Create a purchase token with a price, title and currency.
+
+  @method createPurchaseToken
+  @param {Object} An object consisting of title, price and currency
+  @return {Promise} That resolves to the ID of the token or is rejected
+  if we were unable to create the requested inapp purchase.
+
+  ###
+  createPurchaseToken: ({title, price, currency}) =>
+    endpoint = @insertUrlParameters "v1/stores/:store_id/purchases", {
+      store_id: @store.id
+    }
+    params =
+      endpoint: endpoint
+      type: "POST"
+      data: JSON.stringify({
+        "title": title,
+        "price": price,
+        "currency": currency
+      })
+
+    TT.api.ajax(params).then((response) -> response.id)
+
+  ###*
+  Helper method that creates a purchase and then requests payment for it
+
+  @method createAndRequestPayment
+  @param {Object} An object with a price, title and currency.
+  @return {Promise} That resolves if a payment was successfully
+  created and paid.
+  ###
+  createAndRequestPayment: (obj) ->
+    @createPurchase(obj).then(@requestPayment)
 
   ###*
   Use this method to show a message to the user inside the Tictail Dashboard.
@@ -158,4 +216,3 @@ if typeof define is 'function' and define.amd
     TT.native = new Native
 else
   TT.native = new Native
-
