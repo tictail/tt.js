@@ -184,7 +184,7 @@ describe 'tt-native', ->
 
       TT.api.ajax.should.have.been.calledWithMatch(
         type: 'POST'
-        endpoint: 'v1/stores/'+TT.native.storeId+'/purchases'
+        endpoint: 'v1/stores/'+TT.native.storeId+'/in_app_purchases'
       )
 
       createCall.done (x) ->

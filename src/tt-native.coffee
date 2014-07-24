@@ -180,7 +180,7 @@ class Native
 
   ###
   createPurchaseToken: ({title, price, currency}) =>
-    endpoint = "v1/stores/"+@storeId+"/purchases"
+    endpoint = "v1/stores/"+@storeId+"/in_app_purchases"
     params =
       endpoint: endpoint
       type: "POST"
