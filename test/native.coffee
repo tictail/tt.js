@@ -13,10 +13,11 @@ describe 'tt-native', ->
     TT.native.should.be.a('object')
 
   describe '#init()', ->
-    it 'should resolve the promise with the accessToken in place', (done) ->
+    it 'should resolve the promise with the accessToken and storeId in place', (done) ->
       TT.native.init()
         .then(=>
           TT.native.accessToken.should.equal('abc123')
+          TT.native.storeId.should.equal('foobar')
 
           window.parent.postMessage.should.have.been.calledWith(
             JSON.stringify(eventName: "access", eventData: {
