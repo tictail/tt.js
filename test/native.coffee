@@ -193,3 +193,29 @@ describe 'tt-native', ->
 
       createCall.fail ->
         throw "createPurchaseToken was rejected"
+
+  describe '#createAndRequestPayment', ->
+    it 'should create purchase token and request payment with provided token', ->
+
+      if typeof TT.native.createPurchaseToken != 'function'
+        throw "createPurchaseToken is not available in native"
+
+      sinon.spy(TT.native, 'createPurchaseToken');
+      sinon.spy(TT.native, 'requestPayment');
+
+      def = $.Deferred()
+      TT.api.ajax.returns(def)
+      def.resolve(id: 'someid')
+
+      params =
+        title: 'foo'
+        price: 10
+        currency: 'USD'
+
+      TT.native.createAndRequestPayment(params)
+
+      TT.native.createPurchaseToken.should.have.been.calledWith(params)
+      TT.native.requestPayment.should.have.been.calledWith('someid')
+
+      TT.native.createPurchaseToken.restore()
+      TT.native.requestPayment.restore()
