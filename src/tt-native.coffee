@@ -200,8 +200,8 @@ class Native
   @return {Promise} That resolves if a payment was successfully
   created and paid.
   ###
-  createAndRequestPayment: (obj) ->
-    @createPurchase(obj).then(@requestPayment)
+  createAndRequestPayment: (obj) =>
+    @createPurchaseToken(obj).then(@requestPayment)
 
   ###*
   Use this method to show a message to the user inside the Tictail Dashboard.
