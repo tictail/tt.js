@@ -150,14 +150,12 @@ class Native
 
   Request the payment of an in-app purchase, represented by a
   token. This will cause the IAP payment flow to begin and the in-app
-  payment modal to popup
+  payment modal to popup.
 
   @method requestPayment
-  @param {String} token, the token identifiying
-  the in-app purchase that is to be paid.
+  @param {String} token The token identifiying the in-app purchase that is to be paid.
   @return {Promise} A promise that resolves if and only if the user pays for the purchase.
   It is rejected if the flow did not cause the user to be charged.
-
   ###
   requestPayment: (token) =>
     def = $.Deferred()
@@ -174,8 +172,8 @@ class Native
   Create a purchase token with a price, title and currency.
 
   @method createPurchaseToken
-  @param {Object} An object consisting of title, price and currency
-  @return {Promise} That resolves to the ID of the token or is rejected
+  @param {Object} options An object consisting of title, price and currency.
+  @return {Promise} A promise that resolves to the ID of the token or is rejected
   if we were unable to create the requested inapp purchase.
 
   ###
@@ -193,11 +191,11 @@ class Native
     TT.api.ajax(params).then((response) -> response.id)
 
   ###*
-  Helper method that creates a purchase and then requests payment for it
+  Helper method that creates a purchase and then requests payment for it.
 
   @method createAndRequestPayment
-  @param {Object} An object with a price, title and currency.
-  @return {Promise} That resolves if a payment was successfully
+  @param {Object} options An object with a price, title and currency.
+  @return {Promise} A promise that resolves if a payment was successfully
   created and paid.
   ###
   createAndRequestPayment: (obj) =>
